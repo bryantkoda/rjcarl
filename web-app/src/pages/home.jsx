@@ -17,7 +17,7 @@ export default function HomePage() {
    */
   useEffect(() => {
     api
-      .get("questions")
+      .get("")
       .then(({ data }) => {
         /**
          * I'm assigning a unique id to each question which the
@@ -25,7 +25,7 @@ export default function HomePage() {
          * and questions (Results page).
          */
         setQuestions(
-          data.map((question) => ({ ...question, id: uniqueId("q_") }))
+          data.results.map((question) => ({ ...question, id: uniqueId("q_") }))
         );
       })
       .catch((err) => {

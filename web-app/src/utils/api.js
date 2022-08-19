@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-  baseURL: "/api/",
+  baseURL: "https://opentdb.com/api.php?amount=10&difficulty=easy&type=boolean",
 });
