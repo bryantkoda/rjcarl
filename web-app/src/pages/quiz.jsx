@@ -5,7 +5,8 @@ import QuizContext from "../context";
 
 const QuizPage = () => {
   const navigate = useNavigate();
-  const { questions, currentIndex, setCurrentIndex } = useContext(QuizContext);
+  const { questions, answers, setAnswers, currentIndex, setCurrentIndex } =
+    useContext(QuizContext);
 
   /**
    * If questions are not loaded (which means the user accessed
@@ -15,8 +16,8 @@ const QuizPage = () => {
     return <Navigate to="/" />;
   }
 
-  const handleAnswer = (answer) => {
-    console.log(answer);
+  const handleAnswer = (answer, question) => {
+    setAnswers({ ...answers, [question.id]: answer });
 
     if (currentIndex < questions.length - 1) {
       setCurrentIndex(currentIndex + 1);
@@ -31,13 +32,11 @@ const QuizPage = () => {
   };
 
   /**
-   * Questions don't have any ID on them so I'm using
-   * the traditional method of fetching items: indexes.
+   * Increments the current index to proceed to
+   * the next question.
    */
   return (
-    <div id="quiz">
-      <Question question={questions[currentIndex]} onAnswer={handleAnswer} />
-    </div>
+    <Question question={questions[currentIndex]} onAnswer={handleAnswer} />
   );
 };
 

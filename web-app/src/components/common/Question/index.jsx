@@ -1,22 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
+import sanitizeHtml from "sanitize-html";
 import AnswerType from "./components/AnswerType";
 import QuestionContext from "./context";
-import logo from "../../../images/logo.png";
+import Logo from "../Logo";
 
 const Question = ({ question, onAnswer }) => {
   return (
     <QuestionContext.Provider value={{ question, onAnswer }}>
-      <div className="question">
-        <div className="question-header">
-          <div className="logo">
-            <img src={logo} alt="Koda" />
+      <div className="page text-center">
+        <div className="page-header">
+          <div className="page-header-logo">
+            <Logo width="40" />
           </div>
+          <div className="page-header-title">
+            <h3>{`Category: ${question.category}`}</h3>
+          </div>
+          <div className="page-header-toolbar"></div>
         </div>
-        <div className="question-body">
-          <h4 className="question-text">{`"${question.question}"`}</h4>
+        <div className="page-body">
+          <h4 className="page-heading">{`${sanitizeHtml(
+            question.question
+          )}`}</h4>
         </div>
-        <div className="question-footer">
+        <div className="page-control">
           <AnswerType />
         </div>
       </div>

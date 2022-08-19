@@ -2,12 +2,22 @@ import React, { useContext } from "react";
 import QuestionContext from "../../../../context";
 
 const Boolean = () => {
-  const { onAnswer } = useContext(QuestionContext);
+  const { question, onAnswer } = useContext(QuestionContext);
 
   return (
     <div>
-      <button onClick={(e) => onAnswer("True")}>True</button>
-      <button onClick={(e) => onAnswer("False")}>False</button>
+      <button
+        className="btn btn-success btn-md"
+        onClick={(e) => onAnswer("True", question)}
+      >
+        True
+      </button>
+      <button
+        className="btn btn-danger btn-md"
+        onClick={(e) => onAnswer("False", question)}
+      >
+        False
+      </button>
     </div>
   );
 };
